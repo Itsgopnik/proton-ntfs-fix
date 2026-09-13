@@ -28,8 +28,9 @@
 //! Usage:
 //!   proton-ntfs-fix [--dry-run] [--yes] [<AppID|all>] [ntfs-library] [native-base-dir]
 //!
-//!   --dry-run   only shows what would be done, doesn't change anything
-//!   --yes, -y   skips the confirmation prompt before moving
+//!   --dry-run    only shows what would be done, doesn't change anything
+//!   --yes, -y    skips the confirmation prompt before moving
+//!   --help, -h   prints usage information and exits
 
 use std::env;
 use std::fs;
@@ -55,6 +56,27 @@ struct Config {
     assume_yes: bool,
 }
 
+fn print_help() {
+    println!("proton-ntfs-fix {}", env!("CARGO_PKG_VERSION"));
+    println!("{}", env!("CARGO_PKG_DESCRIPTION"));
+    println!();
+    println!("USAGE:");
+    println!("    proton-ntfs-fix [OPTIONS] [<AppID|all>] [ntfs-library] [native-base-dir]");
+    println!();
+    println!("ARGUMENTS:");
+    println!("    {:<19}single AppID to fix, or \"all\" for every AppID found", "<AppID|all>");
+    println!("    {:<19}[default: all]", "");
+    println!("    {:<19}path to the NTFS Steam library", "<ntfs-library>");
+    println!("    {:<19}[default: {}]", "", default_ntfs_library().display());
+    println!("    {:<19}target directory for the prefixes", "<native-base-dir>");
+    println!("    {:<19}[default: {}]", "", default_native_base().display());
+    println!();
+    println!("OPTIONS:");
+    println!("    --dry-run     only show what would be done, don't change anything");
+    println!("    --yes, -y     skip the confirmation prompt before moving");
+    println!("    --help, -h    print this help message and exit");
+}
+
 fn parse_args() -> Config {
     let mut dry_run = false;
     let mut assume_yes = false;
@@ -64,6 +86,10 @@ fn parse_args() -> Config {
         match arg.as_str() {
             "--dry-run" => dry_run = true,
             "--yes" | "-y" => assume_yes = true,
+            "--help" | "-h" => {
+                print_help();
+                process::exit(0);
+            }
             other => positional.push(other.to_string()),
         }
     }

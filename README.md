@@ -58,6 +58,7 @@ Flags:
 - `--dry-run` — only shows what would be done, doesn't change
   anything.
 - `--yes`, `-y` — skips the confirmation prompt before moving.
+- `--help`, `-h` — prints usage information and exits.
 
 ### Examples
 
