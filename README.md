@@ -83,7 +83,19 @@ proton-ntfs-fix all /mnt/games/SteamLibrary ~/steam-compatdata
   usually small, but disk usage briefly doubles for each one while
   it's being moved).
 
-## Building
+## Installation
+
+Download the prebuilt static binary from the
+[releases page](https://github.com/Itsgopnik/proton-ntfs-fix/releases)
+(statically linked against musl, works on any x86_64 Linux
+distribution without extra dependencies):
+
+```sh
+tar xzf proton-ntfs-fix-x86_64-linux.tar.gz
+chmod +x proton-ntfs-fix
+```
+
+## Building from source
 
 ```sh
 cargo build --release
