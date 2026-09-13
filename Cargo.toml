@@ -1,6 +1,6 @@
 [package]
 name = "proton-ntfs-fix"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2024"
 description = "CLI tool to fix Proton compatdata prefixes on NTFS Steam libraries by relocating them to a native Linux filesystem"
 license = "MIT"
