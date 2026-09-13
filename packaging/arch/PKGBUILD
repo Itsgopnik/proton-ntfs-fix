@@ -1,6 +1,6 @@
 # Maintainer: Itsgopnik <drebnew1@gmail.com>
 pkgname=proton-ntfs-fix
-pkgver=0.1.0
+pkgver=0.1.2
 pkgrel=1
 pkgdesc="CLI tool to fix Proton compatdata prefixes on NTFS Steam libraries by relocating them to a native Linux filesystem"
 arch=('x86_64')
