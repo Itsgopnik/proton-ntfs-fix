@@ -41,6 +41,19 @@ deleted before the symlink has been successfully created.
 the native base directory live on different mounts (`EXDEV`) -- hence
 the detour via copy + same-FS rename.
 
+## Limitations
+
+The tool can't tell whether a game is *currently* run through Proton
+or natively -- it only checks whether a `compatdata/<AppID>` folder
+exists for an installed game. That folder is only ever created by
+Proton in the first place, but it isn't cleaned up automatically if
+you later switch that game to run natively (e.g. after a native Linux
+port becomes available). In that case the tool will still relocate
+the leftover prefix, even though it's no longer in active use. This
+is harmless -- the data is preserved either way, just moved and
+symlinked -- but it does mean not every folder the tool touches is
+necessarily still needed.
+
 ## Usage
 
 ```
