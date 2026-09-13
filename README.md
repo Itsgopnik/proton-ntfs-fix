@@ -85,14 +85,38 @@ proton-ntfs-fix all /mnt/games/SteamLibrary ~/steam-compatdata
 
 ## Installation
 
-Download the prebuilt static binary from the
-[releases page](https://github.com/Itsgopnik/proton-ntfs-fix/releases)
-(statically linked against musl, works on any x86_64 Linux
-distribution without extra dependencies):
+All packages below are built by CI and attached to the
+[releases page](https://github.com/Itsgopnik/proton-ntfs-fix/releases).
+
+### Generic (any x86_64 Linux distro)
+
+Static binary, linked against musl -- no dependencies required:
 
 ```sh
 tar xzf proton-ntfs-fix-x86_64-linux.tar.gz
 chmod +x proton-ntfs-fix
+```
+
+### Debian / Ubuntu
+
+```sh
+sudo apt install ./proton-ntfs-fix_<version>_amd64.deb
+```
+
+### Fedora / RHEL
+
+```sh
+sudo dnf install ./proton-ntfs-fix-<version>-1.x86_64.rpm
+```
+
+### Arch Linux
+
+Not published to the AUR. Build it locally instead, see
+[`packaging/arch`](packaging/arch):
+
+```sh
+cd packaging/arch
+makepkg -si
 ```
 
 ## Building from source

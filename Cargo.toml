@@ -2,5 +2,30 @@
 name = "proton-ntfs-fix"
 version = "0.1.0"
 edition = "2024"
+description = "CLI tool to fix Proton compatdata prefixes on NTFS Steam libraries by relocating them to a native Linux filesystem"
+license = "MIT"
+repository = "https://github.com/Itsgopnik/proton-ntfs-fix"
 
 [dependencies]
+
+[package.metadata.deb]
+maintainer = "Itsgopnik <drebnew1@gmail.com>"
+copyright = "2026, Itsgopnik <drebnew1@gmail.com>"
+extended-description = """\
+Scans a Steam library on NTFS and makes sure every compatdata folder \
+(Proton prefix) is a symlink to a native Linux filesystem instead of \
+a real directory on NTFS, since ntfs3/ntfs-3g don't reliably support \
+the POSIX symlinks Proton needs."""
+depends = "$auto"
+section = "utils"
+priority = "optional"
+assets = [
+    ["target/release/proton-ntfs-fix", "usr/bin/", "755"],
+    ["README.md", "usr/share/doc/proton-ntfs-fix/README.md", "644"],
+]
+
+[package.metadata.generate-rpm]
+assets = [
+    { source = "target/release/proton-ntfs-fix", dest = "/usr/bin/proton-ntfs-fix", mode = "755" },
+    { source = "README.md", dest = "/usr/share/doc/proton-ntfs-fix/README.md", mode = "644", doc = true },
+]
